@@ -1,138 +1,91 @@
-let n_1, n_2, p_1, p_2, turn, st_game, reset_game;
-let draw = 0;
+let boxes = document.querySelectorAll(".box");
+let resetBtn = document.querySelector("#reset-btn");
+let newGameBtn = document.querySelector("#new-btn");
+let msgContainer = document.querySelector(".msg-container");
+let msg = document.querySelector("#msg");
 
-// Start Game Button
-st_game = document.querySelector("#stg");
-reset_game = document.querySelector("#rest_g");
-new_game = document.querySelector("#newg");
+let turnO = true; //playerX, playerO
+let count = 0; //To Track Draw
 
-// Start Game Button
-st_game.addEventListener("click", () => {
-  document.getElementById("alt_stg").style.display = "none";
-  n_1 = prompt("Enter 1'st Player Name");
-  n_2 = prompt("Enter 2nd Player Name");
-
-  while (
-    n_1 === "" ||
-    n_2 === "" ||
-    n_1 === null ||
-    n_2 === null ||
-    n_1 === " " ||
-    n_2 === " "
-  ) {
-    alert("Enter a Valid Name !!");
-    n_1 = prompt("Enter 1'st Player Name");
-    n_2 = prompt("Enter 2nd Player Name");
-  }
-  //Player's Name's Word
-  p_1 = n_1[0].toUpperCase();
-  p_2 = n_2[0].toUpperCase();
-  document.getElementById("rest_g").style.display = "block";
-});
-
-// New Game Button
-new_game.addEventListener("click", () => {
-  buttons.forEach((btn) => {
-    btn.textContent = "";
-    btn.disabled = false;
-  });
-  document.getElementById("alt").style.display = "none";
-});
-
-turn = true;
-
-// Wining Patterns
-let WinP = [
+const winPatterns = [
   [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
   [0, 3, 6],
+  [0, 4, 8],
   [1, 4, 7],
   [2, 5, 8],
   [2, 4, 6],
-  [0, 4, 8],
+  [3, 4, 5],
+  [6, 7, 8],
 ];
 
-/// Button Object
+const resetGame = () => {
+  turnO = true;
+  count = 0;
+  enableBoxes();
+  msgContainer.classList.add("hide");
+};
 
-let buttons = document.querySelectorAll(".btn");
-
-buttons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    draw++;
-    if (turn) {
-      btn.textContent = p_1;
-      turn = !turn;
+boxes.forEach((box) => {
+  box.addEventListener("click", () => {
+    if (turnO) {
+      //playerO
+      box.innerText = "O";
+      turnO = false;
     } else {
-      btn.textContent = p_2;
-      turn = !turn;
+      //playerX
+      box.innerText = "X";
+      turnO = true;
     }
+    box.disabled = true;
+    count++;
 
-    btn.disabled = true;
-    MatchWinner();
+    let isWinner = checkWinner();
+
+    if (count === 9 && !isWinner) {
+      gameDraw();
+    }
   });
 });
 
-// Reset Button
+const gameDraw = () => {
+  msg.innerText = `Game was a Draw.`;
+  msgContainer.classList.remove("hide");
+  disableBoxes();
+};
 
-buttons.forEach((btn) => {
-  reset_game.addEventListener("click", () => {
-    draw = 0;
-    p_1 = n_1[0].toUpperCase();
-    p_2 = n_2[0].toUpperCase();
-    btn.textContent = "";
-    btn.disabled = false;
-  });
-});
+const disableBoxes = () => {
+  for (let box of boxes) {
+    box.disabled = true;
+  }
+};
 
-// Matching Pattern
+const enableBoxes = () => {
+  for (let box of boxes) {
+    box.disabled = false;
+    box.innerText = "";
+  }
+};
 
-let MatchWinner = () => {
-  if (draw == 9) {
-    document.getElementById("win_msg").innerHTML = `<h1>Match Draw</h1>`;
-    document.getElementById("alt").style.display = "flex";
-    draw = 0;
-  } else {
-    for (let i of WinP) {
-      let t_1 = buttons[i[0]].innerHTML;
-      let t_2 = buttons[i[1]].innerHTML;
-      let t_3 = buttons[i[2]].innerHTML;
-      if (t_1 != "" && t_2 != "" && t_3 != "") {
-        if (t_1 == t_2 && t_2 == t_3) {
-          if (t_1 == p_1) {
-            document.getElementById("rest_g").style.display = "none";
-            document.getElementById(
-              "win_msg"
-            ).innerHTML = `<h1>${n_1} <br> Won the Game</h1>`;
-            draw = 0;
-          } else {
-            document.getElementById("rest_g").style.display = "none";
-            document.getElementById(
-              "win_msg"
-            ).innerHTML = `<h1>${n_2} <br> Won the Game</h1>`;
-            draw = 0;
-          }
-          document.getElementById("alt").style.display = "flex";
-        }
+const showWinner = (winner) => {
+  msg.innerText = `Congratulations, Winner is ${winner}`;
+  msgContainer.classList.remove("hide");
+  disableBoxes();
+};
+
+const checkWinner = () => {
+  for (let pattern of winPatterns) {
+    let pos1Val = boxes[pattern[0]].innerText;
+    let pos2Val = boxes[pattern[1]].innerText;
+    let pos3Val = boxes[pattern[2]].innerText;
+
+    if (pos1Val != "" && pos2Val != "" && pos3Val != "") {
+      if (pos1Val === pos2Val && pos2Val === pos3Val) {
+        showWinner(pos1Val);
+        return true;
       }
     }
   }
 };
 
-function Reset() {
-  st_game.addEventListener("click", () => {
-    document.getElementById("alt_stg").style.display = "none";
-    n_1 = prompt("Enter 1'st Player Name");
-    n_2 = prompt("Enter 2nd Player Name");
-
-    while (n_1 === "" || n_2 === "" || n_1 === null || n_2 === null) {
-      alert("Enter a Valid Name !!");
-      n_1 = prompt("Enter 1'st Player Name");
-      n_2 = prompt("Enter 2nd Player Name");
-    }
-    //Player's Name's Word
-    p_1 = n_1[0].toUpperCase();
-    p_2 = n_2[0].toUpperCase();
-    document.getElementById("rest_g").style.display = "block";
-  });
-}
+newGameBtn.addEventListener("click", resetGame);
+resetBtn.addEventListener("click", resetGame);
