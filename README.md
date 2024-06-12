@@ -1,43 +1,43 @@
-Tic-Tac-Toe Game
+# Tic-Tac-Toe Game
+
 Welcome to the Tic-Tac-Toe game! This project is a simple, interactive Tic-Tac-Toe game built using HTML, CSS, and JavaScript.
 
-Table of Contents
-Game Description
-Features
-Setup and Installation
-Usage
-Game Rules
-Contributing
-License
-Game Description
+## Table of Contents
+- [Game Description](#game-description)
+- [Features](#features)
+- [Setup and Installation](#setup-and-installation)
+- [Usage](#usage)
+- [Game Rules](#game-rules)
+- [Contributing](#contributing)
+- [License](#license)
+- [Screenshots](#screenshots)
+- [Author](#author)
+
+## Game Description
 This Tic-Tac-Toe game allows two players to play against each other. The players take turns to mark the spaces in a 3×3 grid with "X" and "O". The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner. If all nine squares are filled and neither player has three in a row, the game is a draw.
 
-Features
-Interactive and user-friendly interface
-Reset button to start a new game
-"New Game" button to reset the board while displaying the winner or draw message
-Real-time game updates with no page reloads
-Mobile-responsive design
-Setup and Installation
+## Features
+- Interactive and user-friendly interface
+- Reset button to start a new game
+- "New Game" button to reset the board while displaying the winner or draw message
+- Real-time game updates with no page reloads
+- Mobile-responsive design
+
+## Setup and Installation
 To run this project locally, follow these steps:
 
-Clone the repository:
-
-bash
-Copy code
-git clone https://github.com/your-username/tic-tac-toe.git
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/tic-tac-toe.git
 Navigate to the project directory:
-
 bash
 Copy code
 cd tic-tac-toe
 Open the index.html file in your favorite web browser:
-
 bash
 Copy code
 open index.html
 Or simply double-click the index.html file.
-
 Usage
 Click on any box to place your mark ("X" or "O").
 The game automatically switches turns between players.
@@ -63,13 +63,18 @@ Distributed under the MIT License. See LICENSE for more information.
 Thank you for checking out this Tic-Tac-Toe game! Enjoy playing and feel free to contribute to the project. If you encounter any issues or have any questions, please open an issue on the GitHub repository. Happy gaming!
 
 Screenshots
-
 Main Game Interface:
+
 
 Winner Message:
 
-Author
 
+Author
 Your Name
 
 Feel free to customize the README further to match your project's needs and your personal style.
+
+vbnet
+Copy code
+
+Make sure to replace `"https://github.com/your-username/tic-tac-toe.git"` with your actual G
