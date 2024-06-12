@@ -10,7 +10,6 @@ Welcome to the Tic-Tac-Toe game! This project is a simple, interactive Tic-Tac-T
 - [Game Rules](#game-rules)
 - [Contributing](#contributing)
 - [License](#license)
-- [Screenshots](#screenshots)
 - [Author](#author)
 
 ## Game Description
