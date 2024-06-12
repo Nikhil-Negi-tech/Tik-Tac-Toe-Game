@@ -67,7 +67,7 @@ Thank you for checking out this Tic-Tac-Toe game! Enjoy playing and feel free to
 
 ## Author
 Nikhil Negi
-
+## 
 Feel free to customize the README further to match your project's needs and your style.
 
 Make sure to replace `"https://github.com/your-username/tic-tac-toe.git"` with your actual GitHub Account.
